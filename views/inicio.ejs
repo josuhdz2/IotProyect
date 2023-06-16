@@ -1,0 +1,15 @@
+<!--carga de plantillas-->
+<%-include('templates/init.ejs')%>
+<div class="container">
+    <div class="text-center pt-5 mt-5 animate__animated animate__backInUp">
+        <h1 class="mt-5 mb-5">Bienvenido a "DoorMaid"</h1>
+        <img src="/img/inicio.png" class="img-fluid"><!--carga de imagen responsiva-->
+        <div>
+            <a class="btn btn-primary btn-lg mt-5 mb-5" href="/login">Comenzar</a><!--boton de acceso o login-->
+        </div>
+        <a class="mb-5" href="https://maidcorp.herokuapp.com/acerca">Acerca de nosotros...</a><br>
+        <a class="mb-5" href="https://maidcorp.herokuapp.com">Crear cuenta</a>
+        <div style="height: 50px;"></div>
+    </div>
+</div>
+<%-include('templates/end.ejs')%>

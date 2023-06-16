@@ -1,0 +1,18 @@
+<!--inclusion de las plantillas-->
+<%-include('templates/init.ejs')%>
+<script>
+    const salaURL="<%=id%>";
+    //carga de la id enviada por el servidor
+</script>
+<div class="text-center mt-5 pt-5">
+    <h1>
+        Emitiendo datos al servidor con clave:<br>
+        <b><%=id%></b>
+    </h1>
+    <video id="video" src="" width="10px"></video>
+</div>
+<!--importacion de librerias y modulos externos-->
+<script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/emisor.js"></script>
+<%-include('templates/end.ejs')%>

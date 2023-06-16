@@ -1,0 +1,13 @@
+<!--carga de plantillas-->
+<%-include('templates/init.ejs')%>
+<div class="container text-center mt-5 pt-5">
+    <h1>Crea una cuenta</h1>
+    <!--declaracion de formulario para envio de datos-->
+    <form action="/signUp" method="post">
+        <input type="email" name="email" class="form-control mt-5 mb-3" autocomplete="off" placeholder="Correo Electronico" pattern=".+@gmail.com"
+        title="Ingresa un correo de Gmail">
+        <input type="password" name="password" class="form-control mb-3" autocomplete="off" minlength="8" placeholder="Password">
+        <button type="submit" class="btn btn-success">Iniciar sesion</button><!--boton para envio de datos-->
+    </form>
+</div>
+<%-include('templates/end.ejs')%>

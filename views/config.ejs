@@ -1,0 +1,51 @@
+<!--declaracion de un nuevo archivo html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--importacion de librerias externas-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <title>Configuracion inicial</title>
+</head>
+<body>
+    <!--carga de contenido de la pagina-->
+    <div class="text-center container mt-5 animate__animated animate__backInDown">
+        <h1>A la escucha del evento de configurarion.</h1>
+        <p>
+            Esta informacion sera utilizara para poder conectar "El Vigilante" a tu cuenta.
+        </p>
+        <!--formulario para carga de id y verificacion-->
+        <form method="post" action="/config">
+            <input type="text" name="secureCode" class="mt-2 form-control" placeholder="Codigo de seguridad" required><br>
+            <button type="submit" class="mt-3 btn btn-success" id="boton">Enviar datos</button>
+        </form>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            const socket=io();
+            if(!localStorage.getItem('salaDoorMaid'))
+            {
+                console.log('a la escucha del evento');
+                socket.on('secure_code', (secureCodes)=>
+                {
+                    console.log(secureCodes);
+                    if(secureCodes.rasp==localStorage.getItem('uniqueID'))
+                    {
+                        localStorage.setItem('salaDoorMaid', secureCodes.id)
+                        socket.emit('connectionSuccess', {response:"success", id:secureCodes.id});
+                        window.location.href='/emisor/'+secureCodes.id;
+                    }
+                })
+            }
+            else
+            {
+                window.location.href='/emisor/'+localStorage.getItem('salaDoorMaid');
+            }
+            
+        </script>
+    </div>
+</body>
+</html>

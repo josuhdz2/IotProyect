@@ -1,0 +1,16 @@
+<!--inclusion de plantillas-->
+<%-include('templates/init.ejs')%>
+<%-include('templates/menu.ejs')%>
+<script>
+    const salaURL="<%=id%>"
+    //carga de id enviada por el servidor
+</script>
+<div class="col">
+    <h1 class="text-center mt-4 mb-4">Cámara Online</h1>
+    <div id="videos"></div>
+    <video id="video" src="" width="100%" alt="Cargando video"></video><!--declaracion de espacio para carga de video-->
+</div>
+<script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script><!--llamada del modulo de conexion peer-->
+<script src="/socket.io/socket.io.js"></script><!--llamada del script socket para ejecucion-->
+<script src="/js/receptor.js"></script><!--llamada del script de recepcion de datos-->
+<%-include('templates/end.ejs')%>

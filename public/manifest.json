@@ -1,0 +1,32 @@
+{
+    "name":"DoorMaid",
+    "short_name":"DoorMaid",
+    "description":"Aplicacion web progresiva para gestion de productos DoorMaid",
+    "background_color":"#FFFFFF",
+    "theme_color":"#FFFFFF",
+    "orientation":"portrait",
+    "display":"standalone",
+    "start_url":"/miCuenta",
+    "id":"/?utm_sourse=web_app_manifest",
+    "scope":"/",
+    "lang":"es-MX",
+    "icons":
+    [
+        {
+            "src":"/img/icono.png",
+            "sizes":"1010x1080",
+            "type":"image/png"
+        },
+        {
+            "src":"/img/iconosqr.png",
+            "sizes":"1009x1009",
+            "type":"image/png"
+        },
+        {
+            "src":"/img/maskable_icon_x128",
+            "sizes":"128x128",
+            "type":"image/png",
+            "purpose":"any maskable"
+        }
+    ]
+}

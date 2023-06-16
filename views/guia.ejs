@@ -1,0 +1,80 @@
+<!--inclusion de plantillas-->
+<%-include('templates/init.ejs')%>
+<%-include('templates/menu.ejs')%>
+<div class="text-center mt-5 mb-5">
+    <h1 class="mb-5 pb-5">Guia de configuración.</h1>
+    <img class="img-fluid" src="/img/guia.png">
+</div>
+<div class="container">
+    <!--contenido de la pagina(parrafos y saltos de linea)-->
+    <p>
+        Agradecemos mucho que haya escojido nuestro producto "DoorMaid"<br>
+        Como primer paso deberas ubicar todas las conexiones de tu dispositivo.<br>
+        <b>
+            1.-Puerto de carga<br>
+            2.-Conexion HDMI<br>
+            3.-Conexion Ethernet<br>
+            4.-Boton principal<br>
+            5.-Luz indicadora de estado<br>
+        </b><br>
+        Antes de intalar, asegurece de que el dispositivo tenga una area asignada.<br>
+        <b>Paso 1: Alimentar el dispositivo.</b><br>
+        Conectar el cable de carga a la toma de corriente. Enseguida, conecta el otro extremo del cable de carga al puerto micro USB del dispocitivo.<br>
+        <b>Paso 2: Dar internet al dispositivo.</b><br>
+        Conectar un cable Ethernet con conexion a internet al puerto correspondiente del dispocitivo.<br>
+        <b>Paso 3: Conectar pantalla.</b><br>
+        Conecta una pantalla externa al puerto HDMI del dispositivo para ver la pantalla de configuracion.<br>
+        <b>Paso 4: Acceder a la pagina del servicio.</b><br>
+        Accede al sitio web del servicio para configurar el dispositivo.<br>
+        <div class="text-center">
+            <h1>Listo! Tu dispositivo esta listo para funcionar.</h1>
+        </div>
+    </p>
+    <div  class="text-center">
+        <!--declaracion de boton y mensaje modal-->
+        <button type="button" class="btn btn-success mb-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Agregar dispositivo
+        </button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Codigo de seguridad</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" id="secureRaspCode" class="form-control" placeholder="Codigo de seguridad de su producto">
+                        <button class="btn btn-success" type="button" id="botonConectar">Conectar</button>
+                        <!--carga de la id enviada por el servidor-->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cerrar">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket=io();
+    var boton=document.getElementById('botonConectar');
+    var codigoRasp=document.getElementById('secureRaspCode');
+    var cerrar=document.getElementById('cerrar');
+    boton.addEventListener('click', ()=>
+    {
+        boton.innerHTML=`Connectando...`;
+        console.log('emitiendo mensaje')
+        socket.emit('secure_code', {id:"<%=id%>", rasp:codigoRasp.value});
+    });
+    socket.on('connectionSuccess', (res)=>
+    {
+        if(res.response=="success" && res.id=="<%=id%>")
+        {
+            boton.innerHTML=`Conectado`;
+            codigoRasp.value="";
+            cerrar.click();
+        }
+    })
+</script>
+<%-include('templates/end.ejs')%>

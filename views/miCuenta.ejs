@@ -1,0 +1,15 @@
+<!--carga de plantillas-->
+<%-include('templates/init.ejs')%>
+<%-include('templates/menu.ejs')%>
+<script>
+    const id='<%=id%>';
+    const public='<%=public%>'
+    //carga de llave vapid publica e id enviada por el servidor
+</script>
+<div class="container text-center mt-5 mb-5 pt-5">
+    <h1>Bienvenido a "DoorMaid"</h1>
+    <h3 class="mb-5 pb-5">La mejor plataforma de seguridad, desde la cual te puedes conectar a tu dispositivo fisico</h3>
+    <img class="img-fluid" src="/img/miCuenta.png" alt="DoorMaid logo"><!--carga de imagen responsiva-->
+</div>
+<script src="/js/webPush.js"></script><!--carga del script de subscripcion-->
+<%-include('templates/end.ejs')%>
